@@ -1,59 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Quantix Service Request & Approval API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel REST API where employees submit internal service requests, managers approve, reject or return them, and Operations users assign and complete the work. Every request has a status, an owner and a full activity history.
 
-## About Laravel
+## Stack
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel 11+, PHP 8.2+, SQLite, Laravel Sanctum (token auth), PHPUnit, Laravel Pint, Larastan.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for key design decisions and trade-offs.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Setup
 
-## Learning Laravel
+```bash
+git clone https://github.com/kaveeshasm/quantix-rest-api.git
+cd quantix-rest-api
+composer install
+cp .env.example .env        # Windows: copy .env.example .env
+php artisan key:generate
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Create the SQLite database file:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+touch database/database.sqlite          # macOS / Linux
+type nul > database\database.sqlite     # Windows (cmd / PowerShell)
+```
 
-## Laravel Sponsors
+Then migrate, seed and start the server:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+php artisan migrate:fresh --seed
+php artisan serve
+```
 
-### Premium Partners
+Queued notifications use the database queue. To process them:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+php artisan queue:work
+```
 
-## Contributing
+## Seeded logins (password for all: `password`)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Email | Role |
+|---|---|
+| manager@example.com | Manager (Alice and Bob report to her) |
+| alice@example.com | Employee |
+| bob@example.com | Employee |
+| ops@example.com | Operations |
+| ops2@example.com | Operations |
 
-## Code of Conduct
+The seeder also creates 10 requests covering every status (ids 1 to 10).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Run the tests
 
-## Security Vulnerabilities
+```bash
+php artisan test
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Tests use an in-memory SQLite database and the sync queue, so no extra setup is needed. Unit tests cover the workflow rules. Feature tests cover the happy path per role, every forbidden action (403), invalid transitions (422), and the notification job being dispatched.
 
-## License
+## Code quality
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+./vendor/bin/pint
+./vendor/bin/phpstan analyse --memory-limit=1G
+```
+
+Formatting uses Laravel Pint. Larastan runs at level 5 and still reports findings, mainly Resource properties and Eloquent casts that static analysis cannot see. Cleaning these up with `@mixin` annotations is listed under next steps.
+
+## API documentation
+
+Import `docs/Quantix-Service-Requests.postman_collection.json` into Postman. Send the three Login requests first. Tokens are saved automatically into collection variables, so you do not paste anything. Run `php artisan migrate:fresh --seed` before each full run, since statuses move forward and tokens are wiped.
+
+| Method | Endpoint | Role |
+|---|---|---|
+| POST | /api/login | Any |
+| POST | /api/logout | Any (extra) |
+| POST | /api/requests | Employee |
+| GET | /api/requests | All, scoped by role |
+| GET | /api/requests/{id} | All, via policy |
+| PUT | /api/requests/{id} | Employee (draft or returned) |
+| POST | /api/requests/{id}/submit | Employee |
+| POST | /api/requests/{id}/decision | Manager |
+| POST | /api/requests/{id}/assign | Operations |
+| POST | /api/requests/{id}/status | Operations |
+| POST | /api/requests/{id}/comments | Participants |
+
+`logout` is an extra endpoint so tokens can be revoked. List supports `search`, `status`, `sort`, `direction`, `per_page` and returns pagination `links` and `meta`.
+
+## Workflow
+
+| From | Allowed next |
+|---|---|
+| draft, returned | submitted |
+| submitted | approved, rejected, returned |
+| approved | assigned |
+| assigned | in_progress |
+| in_progress | completed |
+| rejected, completed | none (final) |
+
+Invalid transitions return 422. Wrong person returns 403.
+
+## Assumptions
+
+- The model is named `ServiceRequest` (Laravel already has a `Request` class); URLs stay `/api/requests`.
+- Managers do not see drafts. Employees see only their own requests. Operations see requests from `approved` onward.
+- Comment is required when a manager rejects or returns a request.
+- Participants who can comment: the requester, their manager (once submitted), and Operations (once approved). Comments are allowed on final requests.
+- Any Operations user can work any request; the assignee must have the Operations role.
+- Notifications use the database channel. Roles are a single `role` column, not a roles table.
+
+## What I would do next
+
+- Lock the row (`lockForUpdate`) inside the transition transaction to prevent races.
+- Add a mail notification channel.
+- File attachments, rate limiting, SLA due dates and an overdue flag.
+- Clean up Larastan findings with `@mixin` annotations.
+- Docker/Sail setup.
+
+## Packages, references and AI usage
+
+- Packages: laravel/framework, laravel/sanctum, phpunit, laravel/pint, larastan/larastan.
+- References: Laravel documentation (Eloquent, Policies, Form Requests, Queues,
