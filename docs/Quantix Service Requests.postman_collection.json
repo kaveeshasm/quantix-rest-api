@@ -1,0 +1,807 @@
+{
+  "auth": {
+    "bearer": [
+      {
+        "key": "token",
+        "type": "string",
+        "value": ""
+      }
+    ],
+    "type": "bearer"
+  },
+  "info": {
+    "_collection_link": "https://go.postman.co/collection/53808202-6fee58be-b0ad-419c-9720-9742e70f4fa7?source=collection_link",
+    "_exporter_id": "53808202",
+    "_postman_id": "6fee58be-b0ad-419c-9720-9742e70f4fa7",
+    "name": "Quantix Service Requests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "http://127.0.0.1:8000/api/login",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "accept": true
+        }
+      },
+      "request": {
+        "auth": {
+          "type": "bearer"
+        },
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "   {\r\n       \"email\": \"bob@example.com\",\r\n       \"password\": \"password\"\r\n   }"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "login"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/login"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/login",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "accept": true
+        }
+      },
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"email\":\"manager@example.com\",\"password\":\"password\"}"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "login"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/login"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/login",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "accept": true
+        }
+      },
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"email\":\"ops@example.com\",\"password\":\"password\"}"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "login"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/login"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "accept": true
+        }
+      },
+      "request": {
+        "auth": {
+          "bearer": [
+            {
+              "key": "token",
+              "type": "string",
+              "value": "{{auth_secret_0ppw}}"
+            }
+          ],
+          "type": "bearer"
+        },
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"title\":\"Laptop\",\"description\":\"Need one\",\"category\":\"equipment\"}"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "accept": true
+        }
+      },
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"title\":\"Laptop 2\",\"description\":\"Need one\",\"category\":\"equipment\",\"submit\":true}"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "accept": true
+        }
+      },
+      "request": {
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "query": [
+            {
+              "key": "per_page",
+              "value": "5"
+            }
+          ],
+          "raw": "http://127.0.0.1:8000/api/requests?per_page=5"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/10",
+      "request": {
+        "header": [],
+        "method": "GET",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "10"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/10"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/1",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"title\":\"New keyboard\"}"
+        },
+        "header": [],
+        "method": "PUT",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "1"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/1"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/1/submit",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": ""
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "1",
+            "submit"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/1/submit"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/3/decision",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"decision\":\"approve\"}"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "3",
+            "decision"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/3/decision"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/4/decision",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"decision\":\"return\",\"comment\":\"Add details\"}"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "4",
+            "decision"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/4/decision"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/6/assign",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"assignee_id\":4}"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "6",
+            "assign"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/6/assign"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/8/status",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"status\":\"in_progress\"}"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "8",
+            "status"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/8/status"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/9/status",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"status\":\"completed\"}"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "9",
+            "status"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/9/status"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/3/comments",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"body\":\"Thanks\"}"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "3",
+            "comments"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/3/comments"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/logout",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": ""
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "logout"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/logout"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/3/decision\t",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"decision\":\"approve\"}\t"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "3",
+            "decision"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/3/decision"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/5/decision",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"decision\":\"return\"}\t"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "5",
+            "decision"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/5/decision"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/6/assign",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "{\"assignee_id\":4}"
+        },
+        "header": [],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "6",
+            "assign"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/6/assign"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [],
+        "method": "GET",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/login",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "accept": true
+        }
+      },
+      "request": {
+        "auth": {
+          "type": "bearer"
+        },
+        "body": {
+          "mode": "raw",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          },
+          "raw": "   {\r\n       \"email\": \"bob@example.com\",\r\n       \"password\": \"password\"\r\n   }"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "login"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/login"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/requests/10",
+      "request": {
+        "header": [],
+        "method": "GET",
+        "url": {
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [
+            "api",
+            "requests",
+            "10"
+          ],
+          "port": "8000",
+          "protocol": "http",
+          "raw": "http://127.0.0.1:8000/api/requests/10"
+        }
+      },
+      "response": []
+    }
+  ]
+}
