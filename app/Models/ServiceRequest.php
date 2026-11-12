@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Enums\Role;
+use Illuminate\Database\Eloquent\Builder;
 
 class ServiceRequest extends Model
 {
@@ -49,5 +51,19 @@ class ServiceRequest extends Model
     public function activityLogs(): HasMany
     {
         return $this->hasMany(ActivityLog::class);
+    }
+
+    public function scopeVisibleTo(Builder $query, User $user): Builder
+    {
+        return match ($user->role) {
+            Role::Employee => $query->where('requester_id', $user->id),
+            Role::Manager => $query
+                ->whereIn('requester_id', $user->directReports()->select('id'))
+                ->where('status', '!=', RequestStatus::Draft->value),
+            Role::Operations => $query->whereIn(
+                'status',
+                array_map(fn ($s) => $s->value, RequestStatus::visibleToOperations())
+            ),
+        };
     }
 }

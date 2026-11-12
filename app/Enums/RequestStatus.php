@@ -44,4 +44,15 @@ enum RequestStatus : string
     {
         return in_array($this, [self::Draft, self::Returned], true);
     }
+
+    /** @return list<self> */
+    public static function visibleToOperations(): array
+    {
+        return [self::Approved, self::Assigned, self::InProgress, self::Completed];
+    }
+
+    public function isVisibleToOperations(): bool
+    {
+        return in_array($this, self::visibleToOperations(), true);
+    }
 }
