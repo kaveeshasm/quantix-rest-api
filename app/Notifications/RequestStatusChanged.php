@@ -2,12 +2,11 @@
 
 namespace App\Notifications;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 use App\Enums\RequestStatus;
 use App\Models\ServiceRequest;
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class RequestStatusChanged extends Notification
 {
@@ -21,8 +20,7 @@ class RequestStatusChanged extends Notification
         public RequestStatus $status,
         public string $actorName,
         public ?string $comment = null,
-    )
-    {
+    ) {
         //
     }
 

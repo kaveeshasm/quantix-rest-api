@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Enums\RequestStatus;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AssignRequest;
 use App\Http\Requests\ChangeStatusRequest;
 use App\Http\Requests\DecisionRequest;
@@ -14,6 +13,7 @@ use App\Http\Resources\ServiceRequestResource;
 use App\Models\ServiceRequest;
 use App\Services\RequestWorkflow;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;

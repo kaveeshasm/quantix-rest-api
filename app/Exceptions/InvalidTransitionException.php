@@ -2,10 +2,9 @@
 
 namespace App\Exceptions;
 
-use Exception;
 use App\Enums\RequestStatus;
+use Exception;
 use Illuminate\Http\JsonResponse;
-use RuntimeException;
 
 class InvalidTransitionException extends Exception
 {

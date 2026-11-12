@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\ServiceRequest;
-use App\Models\User;
-use Illuminate\Auth\Access\Response;
 use App\Enums\RequestStatus;
 use App\Enums\Role;
+use App\Models\ServiceRequest;
+use App\Models\User;
 
 class ServiceRequestPolicy
 {

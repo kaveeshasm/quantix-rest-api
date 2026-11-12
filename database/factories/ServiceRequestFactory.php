@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\ServiceRequest;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Enums\Category;
 use App\Enums\RequestStatus;
+use App\Models\ServiceRequest;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<ServiceRequest>

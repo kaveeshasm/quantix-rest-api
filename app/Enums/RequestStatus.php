@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum RequestStatus : string
+enum RequestStatus: string
 {
     case Draft = 'draft';
     case Submitted = 'submitted';
@@ -15,7 +15,7 @@ enum RequestStatus : string
 
     public function isFinal(): bool
     {
-        return in_array($this, [self:: Rejected, self:: Completed]);
+        return in_array($this, [self::Rejected, self::Completed]);
     }
 
     /**

@@ -2,14 +2,14 @@
 
 namespace App\Jobs;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Queue\Queueable;
 use App\Enums\RequestStatus;
 use App\Enums\Role;
 use App\Models\ServiceRequest;
 use App\Models\User;
 use App\Notifications\RequestStatusChanged;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
@@ -27,8 +27,7 @@ class SendRequestStatusNotification implements ShouldQueue
         public RequestStatus $to,
         public int $actorId,
         public ?string $comment = null,
-    )
-    {
+    ) {
         //
     }
 
