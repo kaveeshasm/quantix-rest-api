@@ -17,4 +17,31 @@ enum RequestStatus : string
     {
         return in_array($this, [self:: Rejected, self:: Completed]);
     }
+
+    /**
+     * The statuses this status is allowed to move to.
+     *
+     * @return list<self>
+     */
+    public function allowedTransitions(): array
+    {
+        return match ($this) {
+            self::Draft, self::Returned => [self::Submitted],
+            self::Submitted => [self::Approved, self::Rejected, self::Returned],
+            self::Approved => [self::Assigned],
+            self::Assigned => [self::InProgress],
+            self::InProgress => [self::Completed],
+            self::Rejected, self::Completed => [],
+        };
+    }
+
+    public function canTransitionTo(self $to): bool
+    {
+        return in_array($to, $this->allowedTransitions(), true);
+    }
+
+    public function isEditable(): bool
+    {
+        return in_array($this, [self::Draft, self::Returned], true);
+    }
 }
