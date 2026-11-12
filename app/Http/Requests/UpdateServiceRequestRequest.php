@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Category;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateServiceRequestRequest extends FormRequest
 {
